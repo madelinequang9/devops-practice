@@ -1,10 +1,3 @@
-resource "azurerm_public_ip" "public_ip" {
-  name                = "myPublicIP"
-  location            = azurerm_resource_group.dev.location
-  resource_group_name = azurerm_resource_group.dev.name
-  allocation_method   = "Dynamic"
-}
-
 resource "azurerm_managed_disk" "disk" {
   count                = 3
   name                 = "datadisk_existing_${count.index}"
@@ -62,7 +55,7 @@ resource "azurerm_virtual_machine" "test" {
   }
 
   os_profile_linux_config {
-    disable_password_authentication = false
+    disable_password_authentication = true
   }
 
   tags = {
