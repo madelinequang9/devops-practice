@@ -37,8 +37,8 @@ module "network-interface" {
   count = var.count
 }
 
-module "vm" {
-    source = "./modules/vm"
+module "linux-vm" {
+    source = "./modules/linux-vm"
 
     resource_group_name = var.resource_group_name
     location = var.location
