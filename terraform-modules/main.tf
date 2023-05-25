@@ -27,9 +27,19 @@ module "virtual-network" {
   subnet_prefix = var.subnet_prefix
 }
 
+module "network-interface" {
+  source = "./modules/network-interface"
+
+  vmname = var.vmname
+  location = var.location
+  resource_group_name = var.resource_group_name
+  subnet_id = module.virtual-network.subnet_id
+  count = var.count
+}
+
 module "vm" {
     source = "./modules/vm"
-    
+
     resource_group_name = var.resource_group_name
     location = var.location
 }
