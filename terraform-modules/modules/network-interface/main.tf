@@ -13,7 +13,7 @@ resource "azurerm_network_interface" "nic" {
 
 resource "azurerm_public_ip" "public_ip" {
   name                = "myPublicIP"
-  location            = azurerm_resource_group.dev.location
-  resource_group_name = azurerm_resource_group.dev.name
+  location            = var.location
+  resource_group_name = var.resource_group_name
   allocation_method   = "Dynamic"
 }

@@ -18,13 +18,18 @@ variable "virtual_network_address_space" {
     description = "Address space of the virtual network"
 }
 
+variable "vmname" {
+    type = string
+    description = "Name of VM"
+}
+
 variable "subnet_name" {
     type = string
     description = "name of the subnet"
 }
 
 variable "subnet_prefix" {
-    type = string
+    type = list(string)
     description = "Address prefix of the subnet"
 }
 

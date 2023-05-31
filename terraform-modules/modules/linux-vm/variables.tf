@@ -8,9 +8,14 @@ variable "location" {
     description = "Location of deployment"
 }
 
+variable "vmname" {
+  type = string
+  description = "Name of VM"
+}
+
 variable "network_interface_ids" {
   type = list(string)
-  description = "Azure location"
+  description = "UDs of network interface"
 }
 
 variable "vm_count" {

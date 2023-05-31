@@ -1,4 +1,4 @@
 output "vm_id" {
     description = "id of the fileshare"
-    value = azurerm_linux_virtual_machine.vm.id
+    value = azurerm_virtual_machine.vm.id
 }

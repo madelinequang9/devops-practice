@@ -1,5 +1,5 @@
 resource "azurerm_managed_disk" "disk" {
-  count                = var.count
+  count                = var.vm_count
   name                 = "datadisk_existing_${count.index}"
   location             = var.location
   resource_group_name  = var.resource_group_name
@@ -12,14 +12,14 @@ resource "azurerm_availability_set" "avset" {
   name                         = "avset"
   location                     = var.location
   resource_group_name          = var.resource_group_name
-  platform_fault_domain_count  = var.count
-  platform_update_domain_count = var.count
+  platform_fault_domain_count  = var.vm_count
+  platform_update_domain_count = var.vm_count
   managed                      = true
 }
 
-resource "azurerm_linux_virtual_machine" "vm" {
+resource "azurerm_virtual_machine" "vm" {
   count                 = var.vm_count
-  name                  = "vm_${count.index}"
+  name                  = "${var.vmname}_${count.index}"
   location              = var.location
   availability_set_id   = azurerm_availability_set.avset.id
   resource_group_name   = var.resource_group_name
