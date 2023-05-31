@@ -23,7 +23,7 @@ variable "subnet_id" {
     description = "id of subnet"
 }
 
-variable "count" {
+variable "network_int_count" {
     type = number
     description = "Number of network interface"
 }

@@ -1,5 +1,5 @@
 resource "azurerm_network_interface" "nic" {
-  count               = var.count
+  count               = var.network_int_count
   name                = "${var.vmname}-nic-${count.index}"
   location            = var.location
   resource_group_name = var.resource_group_name

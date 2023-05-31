@@ -28,7 +28,7 @@ variable "subnet_prefix" {
     description = "Address prefix of the subnet"
 }
 
-variable "count" {
+variable "res_count" {
     type = number
     description = "Number of resources"
 }

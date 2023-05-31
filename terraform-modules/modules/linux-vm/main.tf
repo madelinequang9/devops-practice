@@ -18,13 +18,13 @@ resource "azurerm_availability_set" "avset" {
 }
 
 resource "azurerm_linux_virtual_machine" "vm" {
-  count                 = var.count
+  count                 = var.vm_count
   name                  = "vm_${count.index}"
   location              = var.location
   availability_set_id   = azurerm_availability_set.avset.id
   resource_group_name   = var.resource_group_name
   //network_interface_ids = [element(azurerm_network_interface.nic.*.id, count.index)]
-  network_interface_ids = var.network_interface_ids
+  network_interface_ids = var.network_interface_ids[count.index]
   vm_size               = "Standard_DS1_V2"
 
   storage_image_reference {

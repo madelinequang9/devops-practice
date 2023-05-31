@@ -34,7 +34,7 @@ module "network-interface" {
   location = var.location
   resource_group_name = var.resource_group_name
   subnet_id = module.virtual-network.subnet_id
-  count = var.count
+  network_int_count = var.res_count
 }
 
 module "linux-vm" {
@@ -42,4 +42,6 @@ module "linux-vm" {
 
     resource_group_name = var.resource_group_name
     location = var.location
+    network_interface_ids = [module.network-interface.nic_id]
+    vm_count = var.res_count
 }

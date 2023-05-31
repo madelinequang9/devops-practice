@@ -13,7 +13,7 @@ variable "network_interface_ids" {
   description = "Azure location"
 }
 
-variable "count" {
+variable "vm_count" {
     type = number
     description = "Number of VMs"
 }
