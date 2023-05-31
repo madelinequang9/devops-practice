@@ -27,3 +27,8 @@ variable "subnet_prefix" {
     type = string
     description = "Address prefix of the subnet"
 }
+
+variable "count" {
+    type = number
+    description = "Number of resources"
+}

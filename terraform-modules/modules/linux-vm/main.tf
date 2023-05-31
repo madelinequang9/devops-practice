@@ -1,8 +1,8 @@
 resource "azurerm_managed_disk" "disk" {
-  count                = 3
+  count                = var.count
   name                 = "datadisk_existing_${count.index}"
-  location             = azurerm_resource_group.dev.location
-  resource_group_name  = azurerm_resource_group.dev.name
+  location             = var.location
+  resource_group_name  = var.resource_group_name
   storage_account_type = "Standard_LRS"
   create_option        = "Empty"
   disk_size_gb         = "100"
@@ -10,20 +10,21 @@ resource "azurerm_managed_disk" "disk" {
 
 resource "azurerm_availability_set" "avset" {
   name                         = "avset"
-  location                     = azurerm_resource_group.dev.location
-  resource_group_name          = azurerm_resource_group.dev.name
-  platform_fault_domain_count  = 3
-  platform_update_domain_count = 3
+  location                     = var.location
+  resource_group_name          = var.resource_group_name
+  platform_fault_domain_count  = var.count
+  platform_update_domain_count = var.count
   managed                      = true
 }
 
-resource "azurerm_virtual_machine" "test" {
-  count                 = 3
+resource "azurerm_linux_virtual_machine" "vm" {
+  count                 = var.count
   name                  = "vm_${count.index}"
-  location              = azurerm_resource_group.dev.location
+  location              = var.location
   availability_set_id   = azurerm_availability_set.avset.id
-  resource_group_name   = azurerm_resource_group.dev.name
-  network_interface_ids = [element(azurerm_network_interface.nic.*.id, count.index)]
+  resource_group_name   = var.resource_group_name
+  //network_interface_ids = [element(azurerm_network_interface.nic.*.id, count.index)]
+  network_interface_ids = var.network_interface_ids
   vm_size               = "Standard_DS1_V2"
 
   storage_image_reference {
