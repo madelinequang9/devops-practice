@@ -23,8 +23,7 @@ resource "azurerm_virtual_machine" "vm" {
   location              = var.location
   availability_set_id   = azurerm_availability_set.avset.id
   resource_group_name   = var.resource_group_name
-  //network_interface_ids = [element(azurerm_network_interface.nic.*.id, count.index)]
-  network_interface_ids = var.network_interface_ids[*]
+  network_interface_ids = [element(var.network_interface_ids.*, count.index)]
   vm_size               = "Standard_DS1_V2"
 
   storage_image_reference {
@@ -56,10 +55,12 @@ resource "azurerm_virtual_machine" "vm" {
   }
 
   os_profile_linux_config {
-    disable_password_authentication = true
+    disable_password_authentication = false
   }
 
   tags = {
     environment = "staging"
   }
+
+  delete_os_disk_on_termination = true
 }
