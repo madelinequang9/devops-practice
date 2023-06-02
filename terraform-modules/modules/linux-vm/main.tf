@@ -24,7 +24,7 @@ resource "azurerm_virtual_machine" "vm" {
   availability_set_id   = azurerm_availability_set.avset.id
   resource_group_name   = var.resource_group_name
   //network_interface_ids = [element(azurerm_network_interface.nic.*.id, count.index)]
-  network_interface_ids = var.network_interface_ids[count.index]
+  network_interface_ids = var.network_interface_ids[*]
   vm_size               = "Standard_DS1_V2"
 
   storage_image_reference {
