@@ -1,6 +1,6 @@
 # devops-practice
 ### terraform-basicVM
-> Used Terraform to deploy 3 Virtual Machines in Azure
+> Used Terraform to deploy 3 Linux Virtual Machines in Azure
 
 ### terraform-modules
-> Changed the terrafrm-basicVM to use modules. 
+> Changed the terrafrm-basicVM to use Terraform modules. 
